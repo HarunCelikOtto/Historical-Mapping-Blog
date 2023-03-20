@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Harun Celik",
+    "section": "",
+    "text": "I’m a PhD student in History trying to do cool things with historical maps. Stick around to see the progress I try to make :)"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Historical Mapping",
+    "section": "",
+    "text": "Project Ideas\n\n\n\n\n\n\n\nMaps\n\n\nProjects\n\n\nR\n\n\nArcGIS\n\n\nPython\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nHow to Break R with Arcpy in Two Simple Words!\n\n\n\n\n\n\n\nReticulate\n\n\nArcGIS\n\n\nArcpy\n\n\nFatal Error\n\n\n\n\n\n\n\n\n\n\n\nMar 18, 2023\n\n\nHarun Celik\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/Breaking-R-ArcPy/index.html",
+    "href": "posts/Breaking-R-ArcPy/index.html",
+    "title": "How to Break R with Arcpy in Two Simple Words!",
+    "section": "",
+    "text": "Set up your arcgis clone environment and run this code in RStudio to enjoy!\n\nimport arcpy"
+  },
+  {
+    "objectID": "posts/Project-Ideas/index.html",
+    "href": "posts/Project-Ideas/index.html",
+    "title": "Project Ideas",
+    "section": "",
+    "text": "Hi there!\nHere are some package ideas that I am working on for my dissertation. As you can tell, I like names based on R package naming trends even if the projects aren’t totally based in R."
+  },
+  {
+    "objectID": "posts/Project-Ideas/index.html#georfrncr",
+    "href": "posts/Project-Ideas/index.html#georfrncr",
+    "title": "Project Ideas",
+    "section": "GeoRfrncr",
+    "text": "GeoRfrncr\nAren’t you tired of clicking around to georeference your favorite 19th century map? Do you wish that modern day machine learning algorithms could help in referencing your maps into geotiff files? Look no further! The GeoRfrncr is a package that will hopefully help automate the process of georeferencing scans of historical maps. The goal is to help assist the process of georeferencing so more time is instead spent on the spatial analysis of the digitized maps."
+  },
+  {
+    "objectID": "posts/Project-Ideas/index.html#carte",
+    "href": "posts/Project-Ideas/index.html#carte",
+    "title": "Project Ideas",
+    "section": "CaRte",
+    "text": "CaRte\nDefinitely named less intuitively than its sibling mentioned above, this package hopes to take the previous package further in map analysis. The purpose of the CaRtepackage is to aid the digitization process post-georeferencing. By testing different learning algorithms, the goal is to try and find a way to train models that can recognize the common elements of historical maps across a specific range of time. As long as some classification of categories is possible with the potential for easy editing, the tool will have served its initial purpose."
+  },
+  {
+    "objectID": "posts/Project-Ideas/index.html#tabulae",
+    "href": "posts/Project-Ideas/index.html#tabulae",
+    "title": "Project Ideas",
+    "section": "Tabulae",
+    "text": "Tabulae\nThis package is inspired as an additional functionality to the tabula-java package used to extract tabular data from pdf’s. The primary goal of this package is to extract tabular data used in scholarly printed books from the 1970s onward. The goal is to help humanists access tabular data that are common in print publications that have not been digitized."
+  }
+]
