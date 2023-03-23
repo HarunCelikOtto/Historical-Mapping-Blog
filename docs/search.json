@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Historical Mapping",
     "section": "",
-    "text": "Project Ideas\n\n\n\n\n\n\n\nMaps\n\n\nProjects\n\n\nR\n\n\nArcGIS\n\n\nPython\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nHow to Break R with Arcpy in Two Simple Words!\n\n\n\n\n\n\n\nReticulate\n\n\nArcGIS\n\n\nArcpy\n\n\nFatal Error\n\n\n\n\n\n\n\n\n\n\n\nMar 18, 2023\n\n\nHarun Celik\n\n\n\n\n\n\nNo matching items"
+    "text": "How to Un-Break R with Arcpy in ArcGIS Pro\n\n\n\n\n\n\n\nReticulate\n\n\nArcGIS PRO\n\n\nArcpy\n\n\nFatal Error\n\n\n\n\n\n\n\n\n\n\n\nMar 23, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nProject Ideas\n\n\n\n\n\n\n\nMaps\n\n\nProjects\n\n\nR\n\n\nArcGIS\n\n\nPython\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nHow to Break R with Arcpy in Two Simple Words!\n\n\n\n\n\n\n\nReticulate\n\n\nArcGIS\n\n\nArcpy\n\n\nFatal Error\n\n\n\n\n\n\n\n\n\n\n\nMar 18, 2023\n\n\nHarun Celik\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Breaking-R-ArcPy/index.html",
@@ -47,5 +47,40 @@
     "title": "Project Ideas",
     "section": "Tabulae",
     "text": "Tabulae\nThis package is inspired as an additional functionality to the tabula-java package used to extract tabular data from pdf’s. The primary goal of this package is to extract tabular data used in scholarly printed books from the 1970s onward. The goal is to help humanists access tabular data that are common in print publications that have not been digitized."
+  },
+  {
+    "objectID": "posts/Unbreaking-R-Arcpy/index.html",
+    "href": "posts/Unbreaking-R-Arcpy/index.html",
+    "title": "How to Un-Break R with Arcpy in ArcGIS Pro",
+    "section": "",
+    "text": "Less than a week ago, I had the pleasure of running into a very annoying problem trying to load the arcpy module for python in R using reticulate. I found that after setting up the right python environments to work with arcpy, I could load in most of the modules except for those in the arc_ family.\nI did not find information addressing this concern directly so I wanted to document this behavior for anyone else trying to use arcpy in R."
+  },
+  {
+    "objectID": "posts/Unbreaking-R-Arcpy/index.html#requirements",
+    "href": "posts/Unbreaking-R-Arcpy/index.html#requirements",
+    "title": "How to Un-Break R with Arcpy in ArcGIS Pro",
+    "section": "Requirements",
+    "text": "Requirements\n\nArcGIS Pro 1.1 or later\nR Statistical Computing Software, 3.5 or later\n64-bit version required for ArcGIS Pro (Note: the installer installs both by default).\nInstallation of the arcgisbinding package for R\nClone of the arcgispro-py3 python environment"
+  },
+  {
+    "objectID": "posts/Unbreaking-R-Arcpy/index.html#establishing-a-connection-to-arcgis",
+    "href": "posts/Unbreaking-R-Arcpy/index.html#establishing-a-connection-to-arcgis",
+    "title": "How to Un-Break R with Arcpy in ArcGIS Pro",
+    "section": "Establishing a Connection to ArcGIS",
+    "text": "Establishing a Connection to ArcGIS\nThe issue seems to arise out of licensing requirements from the arcpy module. This is the assumption because modules like arcgis and other non-licensing required modules can be imported successfully. To be able to check out the license for ArcGIS in R, we will need to have the R-ArcGIS bridge installed.\nOnce r-bridge is installed and a directory is set within the geoprocessing options of ArcGIS we can call the library for arcgisbinding to use the function arc.check_product().\n\nlibrary(arcgisbinding)\n\n*** Please call arc.check_product() to define a desktop license.\n\narc.check_product()\n\nproduct: ArcGIS Pro (13.1.0.41833)\nlicense: Advanced\nversion: 1.0.1.300 \n\n\nIf the function runs successfully, then the connection to ArcGIS has been initialized and licensing has been established. We can additionally check the license by storing arc.check_product() in a variable and calling $license on it.\n\ninfo <- arc.check_product()\n\ninfo$license\n\n[1] \"Advanced\""
+  },
+  {
+    "objectID": "posts/Unbreaking-R-Arcpy/index.html#setting-environment-in-reticulate",
+    "href": "posts/Unbreaking-R-Arcpy/index.html#setting-environment-in-reticulate",
+    "title": "How to Un-Break R with Arcpy in ArcGIS Pro",
+    "section": "Setting Environment in Reticulate",
+    "text": "Setting Environment in Reticulate\nOnce a connection to ArcGIS has been initialized, we need to inform reticulate about which python executable it should be running. If you use ArcGIS Pro, you will need to clone the original environment in order to use arcpy functionality. Like the original, the clone is a conda environment that one should be able to access. There are two ways we can tell reticulate to use this cloned environment.\n\nSetting a Global Option\nThe first option is to set a global python interpreter inside of RStudio. This can be done quite easily through the Tools > Global Options > Python > Select > Conda settings. Once you’ve selected the right environment, your python scripts should run from the python executable in that environment.\n\n\nUsing use_condaenv()\nAnother way is to call the use_condaenv() function to establish the path to the python executable file.\n\nlibrary(reticulate)\n\nuse_condaenv(\"../conda/env/arcgispro-py3-clone/python.exe\",\n             required = TRUE)\n\n# The first argument is the path\n# The second argument ensures that you get an error if \n# that python.exe file doesn't exist\n\nYou can verify that you are using the right environment by running;\n\npy_config()"
+  },
+  {
+    "objectID": "posts/Unbreaking-R-Arcpy/index.html#importing-arcpy",
+    "href": "posts/Unbreaking-R-Arcpy/index.html#importing-arcpy",
+    "title": "How to Un-Break R with Arcpy in ArcGIS Pro",
+    "section": "Importing arcpy",
+    "text": "Importing arcpy\nAfter initializing the license and setting the right environment, we should be able to successfully import the arcpy module.\n\ntry:\n  import arcpy\n  print(\"arcpy successfully imported\")\nexcept:\n  print(\"An exception occured. Import was unsuccessful\")"
   }
 ]

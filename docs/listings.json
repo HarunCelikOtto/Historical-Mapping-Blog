@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Unbreaking-R-Arcpy/index.html",
       "/posts/Project-Ideas/index.html",
       "/posts/Breaking-R-ArcPy/index.html"
     ]
