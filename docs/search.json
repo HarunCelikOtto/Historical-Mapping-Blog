@@ -25,35 +25,35 @@
     "href": "posts/Project-Ideas/index.html#arcgeo",
     "title": "Packages in Development",
     "section": "aRcGeo",
-    "text": "aRcGeo\nInitializing an ArcGIS Pro arcpy environment in your R session will now take a single function with the help of aRcGeo. The goal of this package is to help streamline the process of setting up the right python environment as well as importing the arcpy module using reticulate and arcgisbinding to run spatial analysis in R using the ArcGIS family of spatial software. Being able to use arcpy in an r session means that your analysis can also benefit from the growing number of r-spatial packages."
+    "text": "aRcGeo\nInitializing an ArcGIS Pro arcpy environment in your R session will now take a single function with the help of aRcGeo. The goal of this package is to help streamline the process of setting up the right python environment as well as importing the arcpy module using reticulate and arcgisbinding to run spatial analysis in R using the ArcGIS family of spatial software. Being able to use arcpy in an R session means that your analysis can also benefit from the growing number of r-spatial packages."
   },
   {
     "objectID": "posts/Project-Ideas/index.html#carte",
     "href": "posts/Project-Ideas/index.html#carte",
     "title": "Packages in Development",
     "section": "CaRte",
-    "text": "CaRte\nCaRte is a package served as a toolbox for common pre-processing techniques to help with scanned cartographic analysis. The purpose of CaRte is to supply the digital researcher a set of common image pre-processing tools to aid the automatized process of digitizing historical maps."
+    "text": "CaRte\nCaRte is a package served as a toolbox for common pre-processing techniques to help with scanned cartographic analysis. The purpose of CaRte is to supply the digital researcher a set of common image pre-processing tools to aid the automation process of digitizing historical maps."
   },
   {
     "objectID": "posts/Project-Ideas/index.html#georfrncr",
     "href": "posts/Project-Ideas/index.html#georfrncr",
     "title": "Packages in Development",
     "section": "GeoRfrncr",
-    "text": "GeoRfrncr\nSince automatic georeferencing is still not common in GIS software, the GeoRfrncr package is designed to help automate the process of georeferencing scans of historical maps. The package will rely on scanned and digitized maps that can be produced using the CaRte package. With less time georeferencing, more time can instead be spent towards working on the spatial analysis of the digitized maps."
+    "text": "GeoRfrncr\nSince automatic georeferencing is still uncommon in GIS software, the GeoRfrncr package is designed to help automate the process of georeferencing scans for historical maps. The package will rely on scanned and pre-processed maps that can be produced using the CaRte package. With less time spent georeferencing, more time is available towards working on the spatial analysis of digitized maps."
   },
   {
     "objectID": "posts/Project-Ideas/index.html#tabulr",
     "href": "posts/Project-Ideas/index.html#tabulr",
     "title": "Packages in Development",
     "section": "TabulR",
-    "text": "TabulR\nThis package is inspired as an additional functionality to the tabula-java package used to extract tabular data from PDFs. The primary goal of this package is to have an open source tool which can extract tabular data used in scholarly publications. The availability of data extracted from previous scholarship can help researchers to conduct easier analysis in digital software."
+    "text": "TabulR\nThis package is inspired as an additional functionality to the tabula-java package used to extract tabular data from PDFs. The primary goal of this package is to have an open source tool which can extract tabular data used in scholarly publications. The availability of data extracted from printed scholarship can help researchers conduct easier analysis by digital means."
   },
   {
     "objectID": "posts/Project-Ideas/index.html#hsus-api",
     "href": "posts/Project-Ideas/index.html#hsus-api",
     "title": "Packages in Development",
     "section": "HSUS API",
-    "text": "HSUS API\nThis package is an API that can connect to the tabulated data collected in the Historical Statistics of the United States Millennial Edition Online. The API requires a key for access to any individual or organizational subscription."
+    "text": "HSUS API\nThis package is an API that can connect to the tabulated data collected in the Historical Statistics of the United States Millennial Edition Online. The API will require a key for access to any individual or organization which has a subscription."
   },
   {
     "objectID": "posts/Unbreaking-R-Arcpy/index.html",
