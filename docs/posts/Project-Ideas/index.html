@@ -9,7 +9,7 @@
 <meta name="author" content="Harun Celik">
 <meta name="dcterms.date" content="2023-03-19">
 
-<title>Historical Mapping - Project Ideas</title>
+<title>Historical Mapping - Packages in Development</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -105,7 +105,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Project Ideas</h1>
+      <h1 class="title">Packages in Development</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Maps</div>
                 <div class="quarto-category">Projects</div>
@@ -147,24 +147,33 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>Hi there!<br>
-Here are some package ideas that I am working on for my dissertation. As you can tell, I like names based on R package naming trends even if the projects aren’t totally based in R.</p>
+<p>Hello!</p>
+<p>Below are some packages under development that I am an author on for general use to humanists and social scientists. As you can tell, I like naming these packages based on popular R package conventions even if the projects aren’t exclusively written for R.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="1897GeoMapEngland.jpg" class="img-fluid figure-img"></p>
+<p><a href="https://www.davidrumsey.com/luna/servlet/detail/RUMSEY~8~1~342504~90110722:-Geological-Map-of-England-and-Wale?sort=Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No&amp;qvq=q:england%20geological;sort:Pub_List_No_InitialSort%2CPub_Date%2CPub_List_No%2CSeries_No;lc:RUMSEY~8~1&amp;mi=30&amp;trs=1086"><img src="1897GeoMapEngland.jpg" class="img-fluid figure-img"></a></p>
+<p></p><figcaption class="figure-caption">An 1897 Geological Map of England and Wales</figcaption><p></p>
 </figure>
 </div>
-<section id="georfrncr" class="level2">
-<h2 class="anchored" data-anchor-id="georfrncr">GeoRfrncr</h2>
-<p>Aren’t you tired of clicking around to georeference your favorite 19th century map? Do you wish that modern day machine learning algorithms could help in referencing your maps into <code>geotiff</code> files? Look no further! The <code>GeoRfrncr</code> is a package <em>that will hopefully</em> help automate the process of georeferencing scans of historical maps. The goal is to help assist the process of georeferencing so more time is instead spent on the spatial analysis of the digitized maps.</p>
+<section id="arcgeo" class="level2">
+<h2 class="anchored" data-anchor-id="arcgeo">aRcGeo</h2>
+<p>Initializing an ArcGIS Pro <code>arcpy</code> environment in your R session will now take a single function with the help of <code>aRcGeo</code>. The goal of this package is to help streamline the process of setting up the right python environment as well as importing the <code>arcpy</code> module using <code>reticulate</code> and <code>arcgisbinding</code> to run spatial analysis in R using the ArcGIS family of spatial software. Being able to use <code>arcpy</code> in an r session means that your analysis can also benefit from the growing number of <code>r-spatial</code> packages.</p>
 </section>
 <section id="carte" class="level2">
 <h2 class="anchored" data-anchor-id="carte">CaRte</h2>
-<p>Definitely named less intuitively than its sibling mentioned above, this package hopes to take the previous package further in map analysis. The purpose of the <code>CaRte</code>package is to aid the digitization process post-georeferencing. By testing different learning algorithms, the goal is to try and find a way to train models that can recognize the common elements of historical maps across a specific range of time. As long as some classification of categories is possible with the potential for easy editing, the tool will have served its initial purpose.</p>
+<p><code>CaRte</code> is a package served as a toolbox for common pre-processing techniques to help with scanned cartographic analysis. The purpose of <code>CaRte</code> is to supply the digital researcher a set of common image pre-processing tools to aid the automatized process of digitizing historical maps.</p>
 </section>
-<section id="tabulae" class="level2">
-<h2 class="anchored" data-anchor-id="tabulae">Tabulae</h2>
-<p>This package is inspired as an additional functionality to the <code>tabula-java</code> package used to extract tabular data from pdf’s. The primary goal of this package is to extract tabular data used in scholarly printed books from the 1970s onward. The goal is to help humanists access tabular data that are common in print publications that have not been digitized.</p>
+<section id="georfrncr" class="level2">
+<h2 class="anchored" data-anchor-id="georfrncr">GeoRfrncr</h2>
+<p>Since automatic georeferencing is still not common in GIS software, the <code>GeoRfrncr</code> package is designed to help automate the process of georeferencing scans of historical maps. The package will rely on scanned and digitized maps that can be produced using the <code>CaRte</code> package. With less time georeferencing, more time can instead be spent towards working on the spatial analysis of the digitized maps.</p>
+</section>
+<section id="tabulr" class="level2">
+<h2 class="anchored" data-anchor-id="tabulr">TabulR</h2>
+<p>This package is inspired as an additional functionality to the <code>tabula-java</code> package used to extract tabular data from PDFs. The primary goal of this package is to have an open source tool which can extract tabular data used in scholarly publications. The availability of data extracted from previous scholarship can help researchers to conduct easier analysis in digital software.</p>
+</section>
+<section id="hsus-api" class="level2">
+<h2 class="anchored" data-anchor-id="hsus-api">HSUS API</h2>
+<p>This package is an API that can connect to the tabulated data collected in the <a href="https://hsus.cambridge.org/HSUSWeb/HSUSEntryServlet">Historical Statistics of the United States Millennial Edition Online</a>. The API requires a key for access to any individual or organizational subscription.</p>
 
 
 </section>

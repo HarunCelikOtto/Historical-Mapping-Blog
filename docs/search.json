@@ -11,35 +11,49 @@
     "href": "index.html",
     "title": "Historical Mapping",
     "section": "",
-    "text": "How to Un-Break R with Arcpy in ArcGIS Pro\n\n\n\n\n\n\n\nReticulate\n\n\nArcGIS PRO\n\n\nArcpy\n\n\nFatal Error\n\n\n\n\n\n\n\n\n\n\n\nMar 23, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nProject Ideas\n\n\n\n\n\n\n\nMaps\n\n\nProjects\n\n\nR\n\n\nArcGIS\n\n\nPython\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2023\n\n\nHarun Celik\n\n\n\n\n\n\nNo matching items"
+    "text": "How to Un-Break R with Arcpy in ArcGIS Pro\n\n\n\n\n\n\n\nReticulate\n\n\nArcGIS PRO\n\n\nArcpy\n\n\nFatal Error\n\n\n\n\n\n\n\n\n\n\n\nMar 23, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nPackages in Development\n\n\n\n\n\n\n\nMaps\n\n\nProjects\n\n\nR\n\n\nArcGIS\n\n\nPython\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2023\n\n\nHarun Celik\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Project-Ideas/index.html",
     "href": "posts/Project-Ideas/index.html",
-    "title": "Project Ideas",
+    "title": "Packages in Development",
     "section": "",
-    "text": "Hi there!\nHere are some package ideas that I am working on for my dissertation. As you can tell, I like names based on R package naming trends even if the projects aren’t totally based in R."
+    "text": "Hello!\nBelow are some packages under development that I am an author on for general use to humanists and social scientists. As you can tell, I like naming these packages based on popular R package conventions even if the projects aren’t exclusively written for R."
   },
   {
-    "objectID": "posts/Project-Ideas/index.html#georfrncr",
-    "href": "posts/Project-Ideas/index.html#georfrncr",
-    "title": "Project Ideas",
-    "section": "GeoRfrncr",
-    "text": "GeoRfrncr\nAren’t you tired of clicking around to georeference your favorite 19th century map? Do you wish that modern day machine learning algorithms could help in referencing your maps into geotiff files? Look no further! The GeoRfrncr is a package that will hopefully help automate the process of georeferencing scans of historical maps. The goal is to help assist the process of georeferencing so more time is instead spent on the spatial analysis of the digitized maps."
+    "objectID": "posts/Project-Ideas/index.html#arcgeo",
+    "href": "posts/Project-Ideas/index.html#arcgeo",
+    "title": "Packages in Development",
+    "section": "aRcGeo",
+    "text": "aRcGeo\nInitializing an ArcGIS Pro arcpy environment in your R session will now take a single function with the help of aRcGeo. The goal of this package is to help streamline the process of setting up the right python environment as well as importing the arcpy module using reticulate and arcgisbinding to run spatial analysis in R using the ArcGIS family of spatial software. Being able to use arcpy in an r session means that your analysis can also benefit from the growing number of r-spatial packages."
   },
   {
     "objectID": "posts/Project-Ideas/index.html#carte",
     "href": "posts/Project-Ideas/index.html#carte",
-    "title": "Project Ideas",
+    "title": "Packages in Development",
     "section": "CaRte",
-    "text": "CaRte\nDefinitely named less intuitively than its sibling mentioned above, this package hopes to take the previous package further in map analysis. The purpose of the CaRtepackage is to aid the digitization process post-georeferencing. By testing different learning algorithms, the goal is to try and find a way to train models that can recognize the common elements of historical maps across a specific range of time. As long as some classification of categories is possible with the potential for easy editing, the tool will have served its initial purpose."
+    "text": "CaRte\nCaRte is a package served as a toolbox for common pre-processing techniques to help with scanned cartographic analysis. The purpose of CaRte is to supply the digital researcher a set of common image pre-processing tools to aid the automatized process of digitizing historical maps."
   },
   {
-    "objectID": "posts/Project-Ideas/index.html#tabulae",
-    "href": "posts/Project-Ideas/index.html#tabulae",
-    "title": "Project Ideas",
-    "section": "Tabulae",
-    "text": "Tabulae\nThis package is inspired as an additional functionality to the tabula-java package used to extract tabular data from pdf’s. The primary goal of this package is to extract tabular data used in scholarly printed books from the 1970s onward. The goal is to help humanists access tabular data that are common in print publications that have not been digitized."
+    "objectID": "posts/Project-Ideas/index.html#georfrncr",
+    "href": "posts/Project-Ideas/index.html#georfrncr",
+    "title": "Packages in Development",
+    "section": "GeoRfrncr",
+    "text": "GeoRfrncr\nSince automatic georeferencing is still not common in GIS software, the GeoRfrncr package is designed to help automate the process of georeferencing scans of historical maps. The package will rely on scanned and digitized maps that can be produced using the CaRte package. With less time georeferencing, more time can instead be spent towards working on the spatial analysis of the digitized maps."
+  },
+  {
+    "objectID": "posts/Project-Ideas/index.html#tabulr",
+    "href": "posts/Project-Ideas/index.html#tabulr",
+    "title": "Packages in Development",
+    "section": "TabulR",
+    "text": "TabulR\nThis package is inspired as an additional functionality to the tabula-java package used to extract tabular data from PDFs. The primary goal of this package is to have an open source tool which can extract tabular data used in scholarly publications. The availability of data extracted from previous scholarship can help researchers to conduct easier analysis in digital software."
+  },
+  {
+    "objectID": "posts/Project-Ideas/index.html#hsus-api",
+    "href": "posts/Project-Ideas/index.html#hsus-api",
+    "title": "Packages in Development",
+    "section": "HSUS API",
+    "text": "HSUS API\nThis package is an API that can connect to the tabulated data collected in the Historical Statistics of the United States Millennial Edition Online. The API requires a key for access to any individual or organizational subscription."
   },
   {
     "objectID": "posts/Unbreaking-R-Arcpy/index.html",
