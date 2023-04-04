@@ -18,14 +18,14 @@
     "href": "posts/Project-Ideas/index.html",
     "title": "Packages in Development",
     "section": "",
-    "text": "Hello!\nBelow are some packages under development that I am an author on for general use to humanists and social scientists. As you can tell, I like naming these packages based on popular R package conventions even if the projects aren’t exclusively written for R."
+    "text": "Below are descriptions of packages under development that I am an author on. Overall their purpose is to help aid humanists and social scientists in working with spatial and tabular data. As you can tell, I like naming these packages based on popular R package conventions even if the projects aren’t exclusively written for R."
   },
   {
     "objectID": "posts/Project-Ideas/index.html#arcgeo",
     "href": "posts/Project-Ideas/index.html#arcgeo",
     "title": "Packages in Development",
     "section": "aRcGeo",
-    "text": "aRcGeo\nInitializing an ArcGIS Pro arcpy environment in your R session will now take a single function with the help of aRcGeo. The goal of this package is to help streamline the process of setting up the right python environment as well as importing the arcpy module using reticulate and arcgisbinding to run spatial analysis in R using the ArcGIS family of spatial software. Being able to use arcpy in an R session means that your analysis can also benefit from the growing number of r-spatial packages."
+    "text": "aRcGeo\nInitializing an ArcGIS Pro arcpy environment in your R session will now take a single function with the help of aRcGeo. The goal of this package is to help streamline the process of setting up the right python environment as well as importing the arcpy module using reticulate and arcgisbinding to run spatial analysis in R using the ArcGIS family of spatial software. Being able to use arcpy in an R session means that your analysis can also benefit from the growing number of r-spatial packages.\nThe package is currently released and available through HarunCelikOtto/aRcGeo."
   },
   {
     "objectID": "posts/Project-Ideas/index.html#carte",
