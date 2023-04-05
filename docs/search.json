@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Historical Mapping",
     "section": "",
-    "text": "How to Un-Break R with Arcpy in ArcGIS Pro\n\n\n\n\n\n\n\nReticulate\n\n\nArcGIS PRO\n\n\nArcpy\n\n\nFatal Error\n\n\n\n\n\n\n\n\n\n\n\nMar 23, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nPackages in Development\n\n\n\n\n\n\n\nMaps\n\n\nProjects\n\n\nR\n\n\nArcGIS\n\n\nPython\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2023\n\n\nHarun Celik\n\n\n\n\n\n\nNo matching items"
+    "text": "Digitizing A Historical Map [Part One]\n\n\n\n\n\n\n\nMaps\n\n\nDigitization\n\n\nR\n\n\nArcGIS\n\n\nPython\n\n\n\n\n\n\n\n\n\n\n\nApr 3, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nHow to Un-Break R with Arcpy in ArcGIS Pro\n\n\n\n\n\n\n\nReticulate\n\n\nArcGIS PRO\n\n\nArcpy\n\n\nFatal Error\n\n\n\n\n\n\n\n\n\n\n\nMar 23, 2023\n\n\nHarun Celik\n\n\n\n\n\n\n  \n\n\n\n\nPackages in Development\n\n\n\n\n\n\n\nMaps\n\n\nProjects\n\n\nR\n\n\nArcGIS\n\n\nPython\n\n\n\n\n\n\n\n\n\n\n\nMar 19, 2023\n\n\nHarun Celik\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/Project-Ideas/index.html",
@@ -89,5 +89,61 @@
     "title": "How to Un-Break R with Arcpy in ArcGIS Pro",
     "section": "Importing arcpy",
     "text": "Importing arcpy\nAfter initializing the license and setting the right environment, we should be able to successfully import the arcpy module.\n\ntry:\n  import arcpy\n  print(\"arcpy successfully imported\")\nexcept:\n  print(\"An exception occured. Import was unsuccessful\")"
+  },
+  {
+    "objectID": "posts/Map-Digitizing-Part-One/index.html",
+    "href": "posts/Map-Digitizing-Part-One/index.html",
+    "title": "Digitizing A Historical Map [Part One]",
+    "section": "",
+    "text": "In this entry, I want to showcase some of the opportunities that exist with working on scanned historical maps using some image processing and GIS tools. The scanned map that I will be working on is a section of the Postal Route Map of the United States. The map is titled Upper Part. Post Route Map of States of Illinois, Iowa and Missouri and dated to 1879. I’ve downloaded a georeferenced copy of this map through the David Rumsey Map Collection at Stanford. I have yet to find the complete map of the Post Routes but other portions of it can also be found in the Library of Congress."
+  },
+  {
+    "objectID": "posts/Map-Digitizing-Part-One/index.html#loading-libraries",
+    "href": "posts/Map-Digitizing-Part-One/index.html#loading-libraries",
+    "title": "Digitizing A Historical Map [Part One]",
+    "section": "Loading Libraries",
+    "text": "Loading Libraries\nUntil I figure out how to share the actual clipped imagery files on the blog page, I’ll just assume the reader will want to see the code rather than execute it. Nevertheless, if you have raster images that you replace the paths for, all of the functionality should operate just fine. I am currently working to solve the dependencies of the aRcGeo package if you have access to ArcGIS Pro and also installed arcgisbinding to follow along.\n\nlibrary(sf)\nlibrary(aRcGeo)\nlibrary(raster)"
+  },
+  {
+    "objectID": "posts/Map-Digitizing-Part-One/index.html#setting-paths-to-raster-files",
+    "href": "posts/Map-Digitizing-Part-One/index.html#setting-paths-to-raster-files",
+    "title": "Digitizing A Historical Map [Part One]",
+    "section": "Setting Paths to Raster Files",
+    "text": "Setting Paths to Raster Files\nIn order for the tests to run quicker, I’ve clipped two sections of the Upper Postal Routes Map to conduct our spatial analysis on. One of them surrounds the Des Moines area and the other in Buchanan, Iowa. I chose these two locations because together they contain most of the unique cartographic objects that exists throughout the complete map.\nWe’ll start by creating a path to these files so that we can use them for conversion later. The file format that I downloaded the images in are .tif files.\n\ntrim_path <- file.path(\"..\", \"GIS_DATA\", \"Maps\", \"Trims\")\n\nDes_Moines_Postal_Route_tif <- file.path(trim_path, \"Des_Moines_Postal_Route.tif\")\nBuchanan_Postal_Route_tif <- file.path(trim_path, \"Postal_Routes_Selection.tif\")"
+  },
+  {
+    "objectID": "posts/Map-Digitizing-Part-One/index.html#load-des-moines-postal-route-raster-image",
+    "href": "posts/Map-Digitizing-Part-One/index.html#load-des-moines-postal-route-raster-image",
+    "title": "Digitizing A Historical Map [Part One]",
+    "section": "Load Des Moines Postal Route Raster Image",
+    "text": "Load Des Moines Postal Route Raster Image\nOur Des Moines Postal Route Raster is composed of 4 bands. Here we can assume that we are getting the Red, Green, and Blue color bands as well as an additional band we can use as Near Infrared.\n\nDMoines_Raster <- brick(Des_Moines_Postal_Route_tif) \n\n# Display Raster Information\nDMoines_Raster\n\nclass      : RasterBrick \ndimensions : 1984, 2928, 5809152, 4  (nrow, ncol, ncell, nlayers)\nresolution : 36.04464, 36.04464  (x, y)\nextent     : -10484535, -10378996, 5060635, 5132148  (xmin, xmax, ymin, ymax)\ncrs        : +proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs \nsource     : Des_Moines_Postal_Route.tif \nnames      : Des_Moines_Postal_Route_1, Des_Moines_Postal_Route_2, Des_Moines_Postal_Route_3, Des_Moines_Postal_Route_4 \nmin values :                         0,                         0,                         0,                         0 \nmax values :                       255,                       255,                       255,                       255"
+  },
+  {
+    "objectID": "posts/Map-Digitizing-Part-One/index.html#load-buchanan-postal-route-raster-image",
+    "href": "posts/Map-Digitizing-Part-One/index.html#load-buchanan-postal-route-raster-image",
+    "title": "Digitizing A Historical Map [Part One]",
+    "section": "Load Buchanan Postal Route Raster Image",
+    "text": "Load Buchanan Postal Route Raster Image\nSince the images are from the same raster, this clip also has the same number of bands.\n\nBuchanan_Raster <- brick(Buchanan_Postal_Route_tif)\n\n# Display Buchanan Raster Information\nBuchanan_Raster\n\nclass      : RasterBrick \ndimensions : 1412, 2120, 2993440, 4  (nrow, ncol, ncell, nlayers)\nresolution : 36.04464, 36.04464  (x, y)\nextent     : -10284415, -10208000, 5222656, 5273551  (xmin, xmax, ymin, ymax)\ncrs        : +proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs \nsource     : Postal_Routes_Selection.tif \nnames      : Postal_Routes_Selection_1, Postal_Routes_Selection_2, Postal_Routes_Selection_3, Postal_Routes_Selection_4 \nmin values :                        31,                        13,                         0,                       255 \nmax values :                       255,                       242,                       234,                       255"
+  },
+  {
+    "objectID": "posts/Map-Digitizing-Part-One/index.html#displaying-the-maps",
+    "href": "posts/Map-Digitizing-Part-One/index.html#displaying-the-maps",
+    "title": "Digitizing A Historical Map [Part One]",
+    "section": "Displaying the Maps",
+    "text": "Displaying the Maps\nWe can take a quick look at an RGB render of the rasters with Natural Color, giving us the color scheme we are used to seeing the maps with our eyes.\n\nplotRGB(DMoines_Raster)\n\n\n\n\nIf we wanted the image in a rearranged RGB render, like Color Infrared, we would replace the order of our bands. In the case of Color Infrared, the first red band would be replaced with band 4 to get the following result.\n\nplotRGB(DMoines_Raster, r=4)\n\n\n\n\nThe plot function will show us all of the bands individually though the way this is represented by default is a little unintuitive because of the way the color schemes work. We can read these plots as, _1 represents the Red band, _2 the Blue, and so on.\n\nplot(DMoines_Raster)"
+  },
+  {
+    "objectID": "posts/Map-Digitizing-Part-One/index.html#preparing-images-for-processing",
+    "href": "posts/Map-Digitizing-Part-One/index.html#preparing-images-for-processing",
+    "title": "Digitizing A Historical Map [Part One]",
+    "section": "Preparing Images for Processing",
+    "text": "Preparing Images for Processing\nTo make our classification more successful, let’s look to see the kinds of problems we might be facing without any pre-processing on our image.\n\nplotRGB(Buchanan_Raster)\n\n\n\n\nWe want to use an ISO Clustering Unsupervised model for classification. At a simplified level, we are going to tell the the machine to look at pixels across this image and classify an x number of objects to digitize as it does so. What we are hoping for is that the classification will extract the same number of classes that we see as features on the map.\nBased on the complete elements of this particular map, we have 14 unique classes that we would like to identify.\nThe first two of these classes are information about the “empty” map spaces. It’s important to try and identify these areas clearly so that we can understand how well the clustering works in separating the features we want from these two classes. These are…\n\nMap Background\nMap Stitching\n\nThe remaining classes are the more intuitive features we would like to classify.\n\nMap Element Titles (i.e. for cities, the map, or numerical values)\nCircles indicating City Locations\nRail Tracks\nPostal Route (Yellow)\nPostal Route (Blue)\nPostal Route (Red)\nRivers (thicker)\nRivers (thinner)\nWater bodies\nMap Borders\nCounty Borders\nState Borders\n\nLet’s run the classification to see what happens."
+  },
+  {
+    "objectID": "posts/Map-Digitizing-Part-One/index.html#running-first-set-of-classifications",
+    "href": "posts/Map-Digitizing-Part-One/index.html#running-first-set-of-classifications",
+    "title": "Digitizing A Historical Map [Part One]",
+    "section": "Running First Set of Classifications",
+    "text": "Running First Set of Classifications\nFirst we will need to initialize the connection to ArcGIS Pro and load the arcpy module. We also need to check out the Spatial Analyst extension.\n\naRcGeo::init_arcpy(conda_env = \"arcgispro-py3-DeepLearning\")\narcpy$CheckExtension(\"Spatial\")\narcpy$env$workspace = getwd()\n\nIn the Buchanan example we don’t have all the 14 classification features we need but we can keep the number high and ask for 10 instead.\n\n# Run Classification\nBuchanan_Classified_10 <- arcpy$sa$IsoClusterUnsupervisedClassification(in_raster_bands = Buchanan_Postal_Route_tif, Number_of_classes = 10)\n\nHere’s our output in an ArcGIS screenshot.\n\n\n\nClassification of Buchanan Clip with 10 Features\n\n\nHere’s our original for reference.\n\nplotRGB(Buchanan_Raster)\n\n\n\n\nAs we can see, the output is extremely messy. The classifier has identified classes that we aren’t totally interested in. This is clear in the background areas of the map where certain blemishes get classified as different features. While that’s really cool, our intention is to actually classify the map background as a single feature.\nWe can try classification again with less features hoping to get a less muddy picture.\n\n# Run Classification\nBuchanan_Classified_5 <- arcpy$sa$IsoClusterUnsupervisedClassification(in_raster_bands = Buchanan_Postal_Route_tif, Number_of_classes = 5)\n\nHere’s our new classification with only 5 classes.\n\n\n\nClassification of Buchanan Clip with 5 Features\n\n\nThe results are significantly clearer and we can tell that the classifier did a good job of outlining the different rail lines and postal lines as well. We can also tell that the classifier also highlighted some background map features for us instead of differentiating between the different postal route colors.\nThis is not perfect, but we are definitely closer to the digitized output that we would like to reach. In the next blog, I will introduce some methods for how we can avoid classifying those background marks in the hopes of classifying the postal routes instead.\nTO BE CONTINUED…"
   }
 ]
