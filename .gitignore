@@ -9,3 +9,7 @@ _quarto.yml
 _site
 README_files
 README.html
+about.qmd
+index.qmd
+profile.jpg
+styles.css
