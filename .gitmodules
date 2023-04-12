@@ -1,0 +1,3 @@
+[submodule "private_blog_submodule"]
+	path = private_blog_submodule
+	url = https://github.com/HarunCelikOtto/private_blog_submodule
