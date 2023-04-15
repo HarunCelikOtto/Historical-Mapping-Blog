@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Harun Celik">
+<meta name="dcterms.date" content="2023-04-15">
+
+<title>Historical Mapping - Digitizing A Historical Map [Image Processing]</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Historical Mapping</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Harun Celik</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/HarunCelikOtto"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/harun-%C3%A7elik-82668b195/"><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Digitizing A Historical Map [Image Processing]</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Maps</div>
+                <div class="quarto-category">Digitization</div>
+                <div class="quarto-category">R</div>
+                <div class="quarto-category">ArcGIS</div>
+                <div class="quarto-category">Python</div>
+                <div class="quarto-category">Historical</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Harun Celik </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">April 15, 2023</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In the <a href="https://haruncelikotto.github.io/posts/Map-Digitizing-Part-One/">previous blog</a>, we ran a classification function without using any pre-processing on the image. The results were fairly impressive but had some imperfections for our use case that is going to be discussed in this blog.</p>
+</section>
+<section id="processing-extent" class="level2">
+<h2 class="anchored" data-anchor-id="processing-extent">Processing Extent</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../..\posts/Map-Digitizing-Part-One/images/Buchanan_5_Classification.JPG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">ISO Cluster Unsupervised Five Classes</figcaption><p></p>
+</figure>
+</div>
+<p>To retrieve the output above we set our classification to 5 classes but were only returned 3 because the classifier didn’t find enough proximity between the differing features. To fix this, a potential solution is to run the classifier on the complete raster and to set the processing output to the desired clipped area like the one we have here with Buchanan, Iowa. Doing this ensures that classifications are established based on features from the complete map raster and assigned across any selected area. Otherwise the classifier may fail to classify objects which are less common in other parts of the raster.</p>
+<p>We can see a discernible difference if we run the classification on the whole raster and set the processing extent on Buchanan, Iowa rather on only running on the clipped area.</p>
+<p>Let’s fist load our libraries</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(aRcGeo)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arcgisbinding)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will first establish paths to our raster files like last time. This time, I am also adding a path to the full postal route map.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"../GIS_DATA/Maps/"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Paths to rasters</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Raster_Paths <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>())</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>trim_path <span class="ot">&lt;-</span> <span class="fu">file.path</span>(Raster_Paths, <span class="st">"Trims"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The full map</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Upper_Postal_Route_ALL_tif <span class="ot">&lt;-</span> <span class="fu">file.path</span>(Raster_Paths, <span class="st">"Upper_Part_Post_Route_Map_of_States_of_Illinois_Iowa_and_Missouri.tif"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># The clipped maps</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>Des_Moines_Postal_Route_tif <span class="ot">&lt;-</span> <span class="fu">file.path</span>(trim_path, <span class="st">"Des_Moines_Postal_Route.tif"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>Buchanan_Postal_Route_tif <span class="ot">&lt;-</span> <span class="fu">file.path</span>(trim_path, <span class="st">"Postal_Routes_Selection.tif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We then need to initialize a connection and set our workspace to the geodatabase.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>aRcGeo<span class="sc">::</span><span class="fu">init_arcpy</span>(<span class="at">conda_env =</span> <span class="st">"arcgispro-py3-DeepLearning"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>arcpy<span class="sc">$</span><span class="fu">CheckExtension</span>(<span class="st">"Spatial"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>arcpy<span class="sc">$</span>env<span class="sc">$</span>workspace <span class="ot">=</span> <span class="fu">file.path</span>(<span class="fu">getwd</span>(), <span class="st">"HistoricalMapMachineLearning.gdb"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will also set our processing extent to the postal route clip including Buchanan, Iowa. Here I am using a raster object inside of the database with the same extents.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arcpy<span class="sc">$</span>env<span class="sc">$</span>extent <span class="ot">&lt;-</span> <span class="st">"Stretch_Postal_IsoClusterUns"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Most <code>arcpy</code> functions will only take absolute paths so we have to be careful about the path we set for our <code>in_raster_bands</code> argument.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Upper_Postal_Route_ALL_tif <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_replace_all</span>(Upper_Postal_Route_ALL_tif, <span class="st">"/"</span>, <span class="st">"</span><span class="sc">\\\\</span><span class="st">"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Buchanan_Classified_Five <span class="ot">&lt;-</span> arcpy<span class="sc">$</span>sa<span class="sc">$</span><span class="fu">IsoClusterUnsupervisedClassification</span>(<span class="at">in_raster_bands =</span> Upper_Postal_Route_ALL_tif, <span class="at">Number_of_classes =</span> <span class="dv">5</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>Buchanan_Classified_Five<span class="sc">$</span><span class="fu">save</span>(<span class="st">"Buchanan_Classified_Five"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can see in the results that we now have more classes in our clipped raster and can be more confident that other areas on the map will also be classified more uniformly.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Buchanan_Classified_Five.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Five Classifications on Buchanan through Set Extent</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="classification-clutters" class="level2">
+<h2 class="anchored" data-anchor-id="classification-clutters">Classification Clutters</h2>
+<p>In the latter classified example (one with set extent), we saw that the classifier distinguished the linear features quite well, but features like the postal routes were not all classified as unique features. We have a classified blue and yellow postal route but no unique class for the red one. This isn’t an ideal classification output if we intend to run any spatial tests on the three separate postal routes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">brick</span>(Buchanan_Postal_Route_tif) <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotRGB</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Another concern are the classified background patches of the map which we can see in a lighter color in the former example and in dark green in the latter one. While we might be able to ignore them by removing their classifications in a GIS program, increasing the number of desired classifications will only continue to mix parts of the background with features we would like to identify independently which is an obvious larger concern.</p>
+<p>Our test with the five classifications above partially verifies this. As we returned a higher class count, we didn’t necessarily get the features we wanted but rather features on the map that were closer as a class mathematically. The classifier found that background spots were closer together in pixel value than red colored routes. That’s why we only have two postal routes uniquley identified but even more of the background appearing as additional classes.</p>
+<p>At this point, we can turn to working on processing the original image so that we are able to get a better classification for our purposes.</p>
+</section>
+<section id="image-stretch" class="level2">
+<h2 class="anchored" data-anchor-id="image-stretch">Image Stretch</h2>
+<p>One way to remove those features is to use a stretch function. Help on the <a href="https://desktop.arcgis.com/en/arcmap/latest/manage-data/raster-and-images/stretch-function.htm">Arcgis Stretch function</a> defines the functions as “[improving] the appearance of the data by spreading the pixel values along a histogram from the minimum and maximum values defined by their bit depth.” Without going into too much detail about the whole process, we can display the results of a high-filter min-max stretch to see how it affects our clipped extent.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>arcpy<span class="sc">$</span>ia<span class="sc">$</span><span class="fu">Stretch</span>(Buchanan_Postal_Route_tif, <span class="st">"PercentClip"</span>, <span class="at">min_percent =</span> , <span class="at">max_percent =</span> <span class="dv">85</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The resulting image is sharper and filters out a lot of the blotched pieces of the map background successfully.&nbsp;</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Buchanan_Stretch.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Stretched Buchanan Clip</figcaption><p></p>
+</figure>
+</div>
+<p>With this stretched image, the classifier does a better job of focusing on the features we are more interested in while removing those background pieces. We can see quite a difference when we overlay the previous classification with the new stretched one.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Stretch_Unstretched_GIF.gif" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Difference in Classification from Original to Stretch</figcaption><p></p>
+</figure>
+</div>
+<p>Here is the stretched classification in closer detail. Our goal of removing the background patterns has worked relatively well with a lesser portion of the darker blemishes making their appearance as a class. Another success is that we are getting an additional classification for the different postal routes though the classification is still not entirely accurate. The red and blue routes from our original map are mixed in a single classification. Perhaps requesting a higher classification output could help with that but unfortunately, the classifier only finds 5 different classes with the stretched map.</p>
+<p>Our solution may be to take a step back and process the image further.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Buchanan_Stretch_IsoClusterUns.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Classification on Buchanan Stretch</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="image-segmentation" class="level2">
+<h2 class="anchored" data-anchor-id="image-segmentation">Image Segmentation</h2>
+<p>We need to return more classes and we are also interested in further getting rid of the patches that still appear in the background. Stretching the image further potentially risks losing features on the map that are not as boldly drawn. The county lines or creek features which thin out are good examples of the information we may accidentally remove with more stretching.</p>
+<p>Using our stretched image, we have the option to use an image segmentation model to segment features on the map based on the adjustment of average pixel values in an area to their closest values. The output of a high spatial and low spectral segmentation model looks like this.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Segmented_Buchanan.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Segmented Buchanan Raster</figcaption><p></p>
+</figure>
+</div>
+<p>Some advantages of the segmentation is that we are able to get rid of a significant portion of the background pieces of the map. This even includes the stitching that we could see in the original and previous classified images. Our features are segmented well but it is at the cost of reducing the legibility of the textual features on the map. The trade-off is one that has to be considered if those particular features are desired features to be digitized from the map.</p>
+<p>If we are happy with the result we can run a classification on this model and see how that performs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Segmented_Buchanan_IsoClusterUns_7.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Segmented Classification on Buchanan</figcaption><p></p>
+</figure>
+</div>
+<p>In the classification output above, I’ve removed a lot of the background classifications so we can see the underlying tile map. There are major improvements. All unique postal features are classified properly and we have almost none of the blemishes from the background of the map bleeding into the features.</p>
+<p>We are still working with color values and its normal for the classifier to confuse colors that are on the edges of our features, since they have different values to the inner pixels. It may be a little difficult to see but some of the the Segmented Classification map features are surrounded by the red classification. This isn’t a major complication but it will be something we need to work on in order to get better features extracted for when we want to conduct our spatial analysis. This is something I will be touching on in the following blog.</p>
+<p>For now, let’s look at the fruits of our labor by adding a layer containing all current rail line features provided by the <a href="https://public-iowadot.opendata.arcgis.com/datasets/railroads-current-1/explore?location=41.962676%2C-93.370133%2C8.69">Iowa Department of Transportation (DOT)</a> (updated last on November 22, 2022) and see how it compares to the lines of our historical map.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Current_Railroad_Overlay.PNG" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Classified Buchanan with Current Railroads</figcaption><p></p>
+</figure>
+</div>
+<p>We can see just from this example we’ve been working on that the lower rail line currently operated by the Canadian National Railways is probably the same rail track documented in our historical map. The Iowa Northern Railway moving northeast and southwest however is not represented in our historical map. Interestingly, we see that there is a northern line on the historical map which doesn’t correspond to any current rail line that the Iowa DOT data provides. With the information that our map documents rail lines pre-1879, we can answer some interesting questions about the development of railways in Iowa.</p>
+<p>There are reasons as to why the rail lines don’t exactly overlap with one another but I will also dedicate a blog in explaining how we can overcome differences like this so that we can conduct our historical and spatial analysis.</p>
+<p><em>TO BE CONTINUED</em></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
