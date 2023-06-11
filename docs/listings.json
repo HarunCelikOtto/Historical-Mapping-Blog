@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/Edge-Detection-Image-Templates/Edge-Detection.html",
       "/posts/Map-Digitizing-Part-Two/index.html",
       "/posts/Map-Digitizing-Part-One/index.html",
       "/posts/Unbreaking-R-Arcpy/index.html",

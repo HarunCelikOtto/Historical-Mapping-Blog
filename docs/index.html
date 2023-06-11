@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -90,6 +90,7 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
@@ -106,27 +107,29 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Historical Mapping</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">Harun Celik</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/HarunCelikOtto"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/HarunCelikOtto" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/harun-%C3%A7elik-82668b195/"><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/harun-%C3%A7elik-82668b195/" rel="" target=""><i class="bi bi-linkedin" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
@@ -153,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="ArcGIS">ArcGIS <span class="quarto-category-count">(3)</span></div><div class="category" data-category="ArcGIS PRO">ArcGIS PRO <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Arcpy">Arcpy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Digitization">Digitization <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Fatal Error">Fatal Error <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Historical">Historical <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Maps">Maps <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Projects">Projects <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(3)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Reticulate">Reticulate <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(5)</span></div><div class="category" data-category="ArcGIS">ArcGIS <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Arcpy">Arcpy <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Classification">Classification <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Edge Detection">Edge Detection <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Python">Python <span class="quarto-category-count">(5)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Reticulate">Reticulate <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Segmentation">Segmentation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Skimage">Skimage <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Template Matching">Template Matching <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -168,9 +171,56 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Maps,Digitization,R,ArcGIS,Python,Historical" data-listing-date-sort="1681534800000" data-listing-file-modified-sort="1681538460719" data-listing-reading-time-sort="7.11">
+<div class="quarto-post image-right" data-index="0" data-categories="Edge Detection,Template Matching,Python,Skimage,R" data-listing-date-sort="1686373200000" data-listing-file-modified-sort="1686460773994" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6">
 <div class="thumbnail">
-<p><a href="./posts/Map-Digitizing-Part-Two/index.html"> <img src="./posts/Map-Digitizing-Part-Two/images/Current_Railroad_Overlay.PNG" class="thumnail-image"> </a></p>
+<p><a href="./posts/Edge-Detection-Image-Templates/Edge-Detection.html"> <img src="./posts/Edge-Detection-Image-Templates/Images/Train_Edges.png" class="thumbnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/Edge-Detection-Image-Templates/Edge-Detection.html">
+<h3 class="no-anchor listing-title">
+Edge Detection
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Edge Detection'); return false;">
+Edge Detection
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Template Matching'); return false;">
+Template Matching
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Skimage'); return false;">
+Skimage
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+</div>
+<a href="./posts/Edge-Detection-Image-Templates/Edge-Detection.html">
+<div class="listing-description">
+<em>I wanted to start by announcing that the small pause on…</em>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/Edge-Detection-Image-Templates/Edge-Detection.html">
+<div class="listing-date">
+Jun 10, 2023
+</div>
+<div class="listing-author">
+Harun Celik
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-categories="Classification,R,ArcGIS,Python,Segmentation" data-listing-date-sort="1681534800000" data-listing-file-modified-sort="1686459517521" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8">
+<div class="thumbnail">
+<p><a href="./posts/Map-Digitizing-Part-Two/index.html"> <img src="./posts/Map-Digitizing-Part-Two/images/Current_Railroad_Overlay.PNG" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/Map-Digitizing-Part-Two/index.html">
@@ -182,11 +232,8 @@ Digitizing A Historical Map [Image Processing]
 </div>
 </a>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Maps'); return false;">
-Maps
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Digitization'); return false;">
-Digitization
+<div class="listing-category" onclick="window.quartoListingCategory('Classification'); return false;">
+Classification
 </div>
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
@@ -197,8 +244,8 @@ ArcGIS
 <div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
 Python
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Historical'); return false;">
-Historical
+<div class="listing-category" onclick="window.quartoListingCategory('Segmentation'); return false;">
+Segmentation
 </div>
 </div>
 <a href="./posts/Map-Digitizing-Part-Two/index.html">
@@ -218,9 +265,9 @@ Harun Celik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Maps,Digitization,R,ArcGIS,Python" data-listing-date-sort="1680498000000" data-listing-file-modified-sort="1681538225992" data-listing-reading-time-sort="4.975">
+<div class="quarto-post image-right" data-index="2" data-categories="Classification,R,ArcGIS,Python" data-listing-date-sort="1680498000000" data-listing-file-modified-sort="1686459477232" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5">
 <div class="thumbnail">
-<p><a href="./posts/Map-Digitizing-Part-One/index.html"> <img src="./posts/Map-Digitizing-Part-One/Buchanan_Classification.JPG" class="thumnail-image"> </a></p>
+<p><a href="./posts/Map-Digitizing-Part-One/index.html"> <img src="./posts/Map-Digitizing-Part-One/Buchanan_Classification.JPG" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/Map-Digitizing-Part-One/index.html">
@@ -232,11 +279,8 @@ Digitizing A Historical Map [Classifications]
 </div>
 </a>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Maps'); return false;">
-Maps
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Digitization'); return false;">
-Digitization
+<div class="listing-category" onclick="window.quartoListingCategory('Classification'); return false;">
+Classification
 </div>
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
@@ -265,9 +309,9 @@ Harun Celik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Reticulate,ArcGIS PRO,Arcpy,Fatal Error" data-listing-date-sort="1679547600000" data-listing-file-modified-sort="1679592840876" data-listing-reading-time-sort="2.38">
+<div class="quarto-post image-right" data-index="3" data-categories="Reticulate,ArcGIS,Arcpy,R,Python" data-listing-date-sort="1679547600000" data-listing-file-modified-sort="1686459556435" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3">
 <div class="thumbnail">
-<p><a href="./posts/Unbreaking-R-Arcpy/index.html"> <img src="./posts/Unbreaking-R-Arcpy/R_Fatal_Error.png" class="thumnail-image"> </a></p>
+<p><a href="./posts/Unbreaking-R-Arcpy/index.html"> <img src="./posts/Unbreaking-R-Arcpy/R_Fatal_Error.png" class="thumbnail-image"> </a></p>
 </div>
 <div class="body">
 <a href="./posts/Unbreaking-R-Arcpy/index.html">
@@ -282,14 +326,17 @@ How to Un-Break R with Arcpy in ArcGIS Pro
 <div class="listing-category" onclick="window.quartoListingCategory('Reticulate'); return false;">
 Reticulate
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('ArcGIS PRO'); return false;">
-ArcGIS PRO
+<div class="listing-category" onclick="window.quartoListingCategory('ArcGIS'); return false;">
+ArcGIS
 </div>
 <div class="listing-category" onclick="window.quartoListingCategory('Arcpy'); return false;">
 Arcpy
 </div>
-<div class="listing-category" onclick="window.quartoListingCategory('Fatal Error'); return false;">
-Fatal Error
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
 </div>
 </div>
 <a href="./posts/Unbreaking-R-Arcpy/index.html">
@@ -309,9 +356,9 @@ Harun Celik
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Maps,Projects,R,ArcGIS,Python" data-listing-date-sort="1679202000000" data-listing-file-modified-sort="1680575936463" data-listing-reading-time-sort="1.795">
+<div class="quarto-post image-right" data-index="4" data-categories="R,ArcGIS,Python" data-listing-date-sort="1679202000000" data-listing-file-modified-sort="1686459558368" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2">
 <div class="thumbnail">
-<p><a href="./posts/Project-Ideas/index.html"> <img src="./posts/Project-Ideas/1897GeoMapEngland.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/Project-Ideas/index.html"> <p class="card-img-top"><img src="posts\Project-Ideas\1897GeoMapEngland.jpg"  class="thumbnail-image card-img"/></p> </a></p>
 </div>
 <div class="body">
 <a href="./posts/Project-Ideas/index.html">
@@ -323,12 +370,6 @@ Packages in Development
 </div>
 </a>
 <div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Maps'); return false;">
-Maps
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Projects'); return false;">
-Projects
-</div>
 <div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
 R
 </div>
@@ -388,9 +429,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -455,6 +510,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
